@@ -4,45 +4,25 @@
 	import Clock from './Clock.svelte';
 	import Countdown from './Countdown.svelte';
 	import Weather from './Weather.svelte';
-	import localForage from 'localforage';
-	let bg = {
-		startdate: '19700000',
-		copyright: '',
-		urlbase: '/',
-		title: '',
-		url: '/',
-		base64: ''
-	};
-	async function getBackgroundImage() {
-		bg = Object(await localForage.getItem('bg'));
-		let url = 'https://bw.recollect.top/HPImageArchive.aspx?format=js&idx=0&n=10&mkt=ja-JP';
-		let data;
-		try {
-			data = await (await fetch(url)).json();
-		} catch {
-			return;
-		}
-		if (data.images[0].title != bg.title) {
-			console.log('freshing');
-			bg = data.images[0];
-			bg.url = `https://bw.recollect.top${bg.urlbase}_UHD.jpg`;
-			const fr = new FileReader();
-			fr.readAsDataURL(await (await fetch(bg.url)).blob());
-			fr.onload = () => {
-				bg.base64 = String(fr.result);
-				localForage.setItem('bg', bg);
-			};
-		}
-	}
-	getBackgroundImage();
-	setInterval(getBackgroundImage, 3600000);
+	import Contact from './Control.svelte';
+	import FetchImage from './FetchImage';
+	import config from '../config/image.config';
+	let image = config.format;
+	FetchImage().then((result) => {
+		image = Object(result);
+	});
+	let fresh = setInterval(() => {
+		FetchImage().then((result) => {
+			image = Object(result);
+		});
+	}, 3600000);
 </script>
 
 <svelte:head>
 	<title>CCD (Countdown, Clock, and Weather)</title>
 </svelte:head>
 
-<body style="background-image: url({bg.base64 || ''})">
+<body style="background-image: url({image.base64 || ''})">
 	<div id="main">
 		<div class="columns">
 			<div id="countdown" class="column left-flex is-flex">
@@ -56,23 +36,15 @@
 			</div>
 		</div>
 	</div>
-	{#if bg.base64}
+	{#if image.base64}
 		<div id="bg-info" class="corner-left">
-			<div><b>{bg.title}</b></div>
-			<div>{bg.copyright.split(' (', 1)}</div>
-			<div>{String(bg.copyright.split(' (', 2)[1]).split(')', 1)}</div>
+			<div><b>{image.title}</b></div>
+			<div>{image.copyright.split(' (', 1)}</div>
+			<div>{String(image.copyright.split(' (', 2)[1]).split(')', 1)}</div>
 		</div>
 	{/if}
-	<div id="bg-info" class="corner-right">
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div>
-			<b
-				on:click={() => {
-					window.location.reload();
-				}}>CCD</b
-			>
-		</div>
-		<div>Countdown, Clock, and Weather</div>
+	<div id="contact" class="corner-right">
+		<Contact />
 	</div>
 </body>
 
@@ -85,9 +57,9 @@
 		background-size: cover;
 		overflow: hidden !important;
 	}
-	* {
-		margin: 0 !important;
-		padding: 0 !important;
+	::global(*) {
+		margin: 0;
+		padding: 0;
 	}
 	.is-flex {
 		height: 100vh;
@@ -102,16 +74,16 @@
 		justify-content: center;
 	}
 	.left {
-		padding-right: 1rem !important;
-		transform: perspective(7.5rem) rotateY(5deg);
+		margin-right: 1rem !important;
+		transform: perspective(7.5rem) rotateY(7.5deg);
 		transform-origin: right;
 		perspective-origin: right;
 	}
 	.right {
-		padding-left: 1rem !important;
-		transform: perspective(7.5rem) rotateY(-5deg);
+		margin-left: 1rem !important;
+		transform: perspective(7.5rem) rotateY(-7.5deg);
 		transform-origin: left;
-		perspective-origin: right;
+		perspective-origin: left;
 	}
 	.corner-left {
 		position: absolute;
@@ -123,7 +95,7 @@
 		border-left: solid 0.1em rgba(255, 255, 255, 0.75);
 		padding-left: 0.5em !important;
 		font-family: 'IBM Plex Sans JP', 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont,
-			'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+			'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	}
 	.corner-right {
 		position: absolute;
@@ -134,8 +106,8 @@
 		color: rgba(255, 255, 255, 0.75);
 		border-right: solid 0.1em rgba(255, 255, 255, 0.75);
 		padding-right: 0.5em !important;
-		font-family: 'IBM Plex Sans JP', 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont,
-			'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+		font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+			Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 		text-align: right;
 	}
 </style>
