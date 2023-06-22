@@ -27,6 +27,7 @@ body {
 }
 .c1-flex {
 	@include mobile {
+		position: relative;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-content: end;
@@ -49,8 +50,8 @@ body {
 	@include mobile {
 		position: relative;
 		margin-right: 0 !important;
-		bottom: -3rem;
-		transform: perspective(5rem) rotateX(-3deg);
+		margin-bottom: -2rem !important;
+		transform: perspective(5rem) rotateX(-4deg);
 		transform-origin: bottom;
 	}
 	transform: perspective(7.5rem) rotateY(5.5deg);
@@ -62,8 +63,8 @@ body {
 	@include mobile {
 		position: relative;
 		margin-left: 0 !important;
-		top: -3rem;
-		transform: perspective(5rem) rotateX(3deg);
+		margin-top: -2rem !important;
+		transform: perspective(5rem) rotateX(4deg);
 		transform-origin: top;
 	}
 	transform: perspective(7.5rem) rotateY(-5.5deg);
