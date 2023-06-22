@@ -25,14 +25,14 @@ body {
 .left {
 	margin-right: 1rem !important;
 	perspective-origin: right;
-	transform: perspective(7.5rem) rotateY(7.5deg);
+	transform: perspective(7.5rem) rotateY(5.5deg);
 	transform-origin: right;
 }
 
 .right {
 	margin-left: 1rem !important;
 	perspective-origin: left;
-	transform: perspective(7.5rem) rotateY(-7.5deg);
+	transform: perspective(7.5rem) rotateY(-5.5deg);
 	transform-origin: left;
 }
 
