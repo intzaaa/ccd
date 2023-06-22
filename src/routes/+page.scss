@@ -29,16 +29,16 @@ body {
 	@include mobile {
 		position: relative;
 		flex-wrap: wrap;
-		justify-content: center;
 		align-content: end;
+		justify-content: center;
 	}
 	justify-content: right;
 }
 .c3-flex {
 	@include mobile {
 		flex-wrap: wrap;
-		justify-content: center;
 		align-content: start;
+		justify-content: center;
 	}
 }
 .c2 {
@@ -62,8 +62,8 @@ body {
 	perspective-origin: left;
 	@include mobile {
 		position: relative;
-		margin-left: 0 !important;
 		margin-top: -2rem !important;
+		margin-left: 0 !important;
 		transform: perspective(5rem) rotateX(4deg);
 		transform-origin: top;
 	}
