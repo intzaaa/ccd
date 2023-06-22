@@ -15,8 +15,15 @@
 			CCD
 		</div>
 	</div>
-
 	<div>
 		<span>Countdown,</span> <span>Clock,</span> <span>and Weather</span>
+	</div>
+	<div
+		on:click={() => {
+			window.open('https://github.com/huangyinhaow/ccd');
+		}}
+		class="link"
+	>
+		huangyinhaow/ccd
 	</div>
 </div>
