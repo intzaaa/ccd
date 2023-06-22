@@ -1,4 +1,5 @@
 <script>
+	import './Clock.scss';
 	import '@ibm/plex/css/ibm-plex.min.css';
 	import dayjs from 'dayjs';
 	import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -27,20 +28,4 @@
 </div>
 
 <style>
-	.clock {
-		color: rgba(255, 255, 255, 0.5);
-		text-align: center;
-		font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-			Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	}
-	.clock-time {
-		font-size: 6em;
-		font-weight: 600;
-	}
-	.clock-date {
-		position: relative;
-		top: -2rem;
-		font-size: 1.5em;
-		font-weight: 500;
-	}
 </style>

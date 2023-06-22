@@ -1,4 +1,5 @@
 <script>
+	import './Countdown.scss';
 	import '@ibm/plex/css/ibm-plex.min.css';
 	import dayjs from 'dayjs';
 	import duration from 'dayjs/plugin/duration';
@@ -45,22 +46,3 @@
 	<div class="countdown-day">{countdown.differenceDays}D</div>
 	<div class="countdown-week">{countdown.differenceWeeks}W+{countdown.differenceWeekDays}D</div>
 </div>
-
-<style>
-	.countdown {
-		color: rgba(255, 255, 255, 0.5);
-		text-align: center;
-		font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-			Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	}
-	.countdown-day {
-		font-size: 6rem;
-		font-weight: 600;
-	}
-	.countdown-week {
-		position: relative;
-		top: -2rem;
-		font-size: 1.5rem;
-		font-weight: 500;
-	}
-</style>
