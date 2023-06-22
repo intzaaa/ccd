@@ -4,7 +4,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="control">
+<span class="control">
 	<div>
 		<div
 			class="name"
@@ -26,4 +26,4 @@
 	>
 		huangyinhaow/ccd
 	</div>
-</div>
+</span>

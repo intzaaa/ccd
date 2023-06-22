@@ -26,6 +26,3 @@
 	<div class="clock-time">{clock.time}</div>
 	<div class="clock-date">{clock.date}</div>
 </div>
-
-<style>
-</style>

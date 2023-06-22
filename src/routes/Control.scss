@@ -1,11 +1,7 @@
 .control {
-  filter: opacity(0);
-  transition: all 0.25s ease-in-out;
   user-select: none;
 }
-.control:hover {
-  filter: opacity(1);
-}
+
 .name {
   font-weight: 900;
 }

@@ -13,11 +13,11 @@
 		console.log(result);
 		image = Object(result);
 	});
-	let fresh = setInterval(() => {
+	setInterval(() => {
 		FetchImage().then((result) => {
 			image = Object(result);
 		});
-	}, 3600000);
+	}, 1800000);
 </script>
 
 <svelte:head>
@@ -25,26 +25,48 @@
 </svelte:head>
 
 <body style="background-image: url({image.base64 || ''})">
-	<div id="main">
+	<div id="main" class="main is-flex">
 		<div class="columns">
-			<div id="countdown" class="column left-flex is-flex">
-				<div class="left top"><Countdown /></div>
+			<div id="countdown" class="column c1-flex is-flex">
+				<div class="c1"><Countdown /></div>
 			</div>
-			<div id="clock" class="column center is-flex">
-				<div class="center"><Clock /></div>
+			<div id="clock" class="column c2 is-flex">
+				<div class="c2"><Clock /></div>
 			</div>
-			<div id="weather" class="column right-flex is-flex">
-				<div class="right bottom"><Weather /></div>
+			<div id="weather" class="column c3-flex is-flex">
+				<div class="c3"><Weather /></div>
 			</div>
 		</div>
 	</div>
-	{#if image.base64}
-		<div id="bg-info" class="corner-left">
-			<div><b>{image.title}</b></div>
-			<div>{image.copyright.split(' (', 1)}</div>
-			<div>{String(image.copyright.split(' (', 2)[1]).split(')', 1)}</div>
+	<div id="bg-info" class="corner-left">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			class="info-title"
+			on:click={() => {
+				window.open(`https://bing.com/?q=${image.title}&mkt=${config.mkt}`);
+			}}
+		>
+			{image.title || 'Fetching...'}
 		</div>
-	{/if}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			on:click={() => {
+				window.open(`https://bing.com/?q=${image.copyright.split(' (', 1)}&mkt=${config.mkt}`);
+			}}
+		>
+			{image.copyright.split(' (', 1) || ''}
+		</div>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			on:click={() => {
+				window.open(image.copyrightlink);
+			}}
+		>
+			{`${
+				image.copyright.replace(`${image.copyright.split(' (', 1)} (`, '').replace(')', '') || ''
+			}`}
+		</div>
+	</div>
 	<div id="contact" class="corner-right">
 		<Contact />
 	</div>
