@@ -1,7 +1,9 @@
-.control {
+.contact {
   user-select: none;
 }
-
+.contact:hover {
+  visibility: hidden;
+}
 .name {
   font-weight: 900;
 }

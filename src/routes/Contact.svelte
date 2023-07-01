@@ -1,10 +1,10 @@
 <script>
-	import './Control.scss';
+	import './Contact.scss';
 	import FetchImage from './FetchImage';
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<span class="control">
+<div class="contact">
 	<div>
 		<div
 			class="name"
@@ -26,4 +26,4 @@
 	>
 		huangyinhaow/ccd
 	</div>
-</span>
+</div>
