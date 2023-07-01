@@ -1,14 +1,19 @@
 <script>
+	import localForage from 'localforage';
 	import 'bulma/bulma.sass';
 	import '@ibm/plex/css/ibm-plex.min.css';
 	import './+page.scss';
 	import Clock from './Clock.svelte';
 	import Countdown from './Countdown.svelte';
 	import Weather from './Weather.svelte';
-	import Contact from './Control.svelte';
+	import Contact from './Contact.svelte';
 	import FetchImage from './FetchImage';
+	import Quote from './Quote.svelte';
 	import config from '../config/image.config';
 	let image = config.format;
+	localForage.getItem('image').then((result) => {
+		image = result;
+	});
 	FetchImage().then((result) => {
 		console.log(result);
 		image = Object(result);
@@ -31,41 +36,17 @@
 				<div class="c1"><Countdown /></div>
 			</div>
 			<div id="clock" class="column c2 is-flex">
-				<div class="c2"><Clock /></div>
+				<div class="c2">
+					<Clock />
+				</div>
 			</div>
 			<div id="weather" class="column c3-flex is-flex">
 				<div class="c3"><Weather /></div>
 			</div>
 		</div>
 	</div>
-	<div id="bg-info" class="corner-left">
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div
-			class="info-title"
-			on:click={() => {
-				window.open(`https://bing.com/?q=${image.title}&mkt=${config.mkt}`);
-			}}
-		>
-			{image.title || 'Fetching...'}
-		</div>
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div
-			on:click={() => {
-				window.open(`https://bing.com/?q=${image.copyright.split(' (', 1)}&mkt=${config.mkt}`);
-			}}
-		>
-			{image.copyright.split(' (', 1) || ''}
-		</div>
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div
-			on:click={() => {
-				window.open(image.copyrightlink);
-			}}
-		>
-			{`${
-				image.copyright.replace(`${image.copyright.split(' (', 1)} (`, '').replace(')', '') || ''
-			}`}
-		</div>
+	<div class="corner-left">
+		<Quote />
 	</div>
 	<div id="contact" class="corner-right">
 		<Contact />

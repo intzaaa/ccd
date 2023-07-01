@@ -1,6 +1,6 @@
 import localForage from 'localforage';
 import config from '../config/image.config';
-export default async function freshImage() {
+export default async function FetchImage() {
 	console.log('fetching image data');
 	let image = config.format;
 	if (await localForage.getItem('image')) image = Object(await localForage.getItem('image'));
