@@ -2,6 +2,9 @@
 	import './Quote.scss';
 	import quotes from 'quotesy';
 	let quote = quotes.random();
+	setInterval(() => {
+		quote = quotes.random();
+	}, 450000);
 </script>
 
 <div id="quote" class="quote">
