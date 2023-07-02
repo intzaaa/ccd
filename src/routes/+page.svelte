@@ -45,6 +45,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="image-info">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div>
+			{image.copyright.split(' (', 1) || ''}
+		</div>
+	</div>
 	<div class="corner-left">
 		<Quote />
 	</div>
