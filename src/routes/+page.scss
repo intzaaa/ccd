@@ -121,6 +121,7 @@ body {
 }
 .image-info {
 	@include mobile {
+		display: none;
 		pointer-events: none;
 	}
 	position: absolute;
