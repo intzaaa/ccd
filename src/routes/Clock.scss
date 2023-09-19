@@ -1,22 +1,22 @@
 .clock {
-  color: rgb(255, 255, 255);
-  filter: opacity(0.5);
-  font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  text-align: center;
-  transition: all 0.25s ease-in-out;
-  user-select: none;
+	color: rgb(240, 240, 240);
+	filter: opacity(0.5);
+	font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	text-align: center;
+	transition: all 0.25s ease-in-out;
+	user-select: none;
 }
 .clock:hover {
-  filter: opacity(0.8);
+	filter: opacity(0.8);
 }
 .clock-time {
-  font-size: 6em;
-  font-weight: 600;
+	font-size: 6em;
+	font-weight: 600;
 }
 .clock-date {
-  position: relative;
-  margin-top: -2rem !important;
-  font-size: 1.5em;
-  font-weight: 500;
+	position: relative;
+	margin-top: -2rem !important;
+	font-size: 1.5em;
+	font-weight: 500;
 }
