@@ -29,7 +29,7 @@
 	<title>CCD (Countdown, Clock, and Weather)</title>
 </svelte:head>
 
-<body style="background-image: url({image.base64 || ''})">
+<body style="background-image: url({image?.base64 || ''})">
 	<div id="main" class="main is-flex">
 		<div class="columns">
 			<div id="countdown" class="column c1-flex is-flex">
@@ -48,7 +48,7 @@
 	<div class="image-info">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div>
-			{image.copyright.split(' (', 1) || ''}
+			{image?.copyright?.split(' (', 1) || ''}
 		</div>
 	</div>
 	<div class="corner-left">
